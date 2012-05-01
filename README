@@ -1,0 +1,10 @@
+This is a physically correct simulation of waves on a surface, for example water-waves. 
+It can also be used to simulate Microwaves, and has features like the support for different 
+refraction indices, different wave sources and custom borders. Therefore, experiments like 
+the double-slit-experiment can be easily simulated.
+
+Features:
+  - Physically correct wave simulation
+  - Support of different refraction indices
+  - Support of custom borders (e.g. double-slit)
+  - Customisable visualisation colors
