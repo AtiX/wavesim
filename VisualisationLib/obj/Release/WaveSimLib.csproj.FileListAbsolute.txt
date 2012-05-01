@@ -1,0 +1,5 @@
+C:\Users\Arthur Silber\Documents\Visual Studio 2010\Projects\WaveSim\VisualisationLib\obj\Release\ResolveAssemblyReference.cache
+C:\Users\Arthur Silber\Documents\Visual Studio 2010\Projects\WaveSim\VisualisationLib\bin\Release\WaveSimLib.dll
+C:\Users\Arthur Silber\Documents\Visual Studio 2010\Projects\WaveSim\VisualisationLib\bin\Release\WaveSimLib.pdb
+C:\Users\Arthur Silber\Documents\Visual Studio 2010\Projects\WaveSim\VisualisationLib\obj\Release\WaveSimLib.dll
+C:\Users\Arthur Silber\Documents\Visual Studio 2010\Projects\WaveSim\VisualisationLib\obj\Release\WaveSimLib.pdb
