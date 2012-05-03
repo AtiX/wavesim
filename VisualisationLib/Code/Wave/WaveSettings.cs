@@ -25,7 +25,7 @@ namespace WaveSimLib.Code.Wave
         public double DeltaT = 0.2;
         public int DesiredFPS = 100;
 
-        public double Energieerhaltung = 0.969;
+        public double Energieerhaltung = 0.967;
 
         //Current Simulation Data
         public int Width  = 1280;

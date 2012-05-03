@@ -21,3 +21,7 @@ C:\Users\Arthur Silber\Documents\Visual Studio 2010\Projects\WaveSim\WaveSim\obj
 C:\Users\Arthur Silber\Documents\Visual Studio 2010\Projects\WaveSim\WaveSim\obj\x86\Debug\ResGen.write.1.tlog
 C:\Users\Arthur Silber\Documents\Visual Studio 2010\Projects\WaveSim\WaveSim\bin\Debug\WaveSimLib.dll
 C:\Users\Arthur Silber\Documents\Visual Studio 2010\Projects\WaveSim\WaveSim\bin\Debug\WaveSimLib.pdb
+C:\Users\Arthur Silber\Documents\Visual Studio 2010\Projects\WaveSim\WaveSim\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\Arthur Silber\Documents\Visual Studio 2010\Projects\WaveSim\WaveSim\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\Arthur Silber\Documents\Visual Studio 2010\Projects\WaveSim\WaveSim\obj\x86\Debug\WaveSim.SimSettingsForm.resources
+C:\Users\Arthur Silber\Documents\Visual Studio 2010\Projects\WaveSim\WaveSim\obj\x86\Debug\WaveSim.SimVisForm.resources

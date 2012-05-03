@@ -39,24 +39,10 @@ namespace WaveSim
             Engine.Init(pb_image.Width / _resDiv, pb_image.Height / _resDiv);
 
             dcv = new DynamicColorVisualizer();
-            p_colMax.BackColor = dcv.ColorMax;
-            p_colNull.BackColor = dcv.ColorNull;
-            p_colMin.BackColor = dcv.ColorMin;
-            p_colWall.BackColor = dcv.ColorWall;
-            p_colorMass.BackColor = dcv.ColorMass;
 
-            txt_deltat.Text = Engine.Settings.DeltaT.ToString();
-            txt_distanz.Text = Engine.Settings.TeilchenDistanz.ToString();
-            txt_dkopplung.Text = Engine.Settings.FederkonstanteKopplung.ToString();
-            txt_dteilchen.Text = Engine.Settings.FederkonstanteTeilchen.ToString();
-            txt_energieerhaltung.Text = Engine.Settings.Energieerhaltung.ToString();
-            txt_fps.Text = Engine.Settings.DesiredFPS.ToString();
-            txt_masse.Text = Engine.Settings.Teilchenmasse.ToString();
-
-            cb_mausaction.SelectedIndex = 0;
-            cb_resDiv.SelectedIndex = 0;
-            cb_wert.SelectedIndex = 9;
-            cb_resDiv.SelectedIndex = 3;
+            tsCbMouseAction.SelectedIndex = 0;
+            tsCbMouseValue.SelectedIndex = 9;
+            tsCbSimResolution.SelectedIndex = 3;
 
             if (_fileToLoad != "")
             {
@@ -100,88 +86,6 @@ namespace WaveSim
             catch(Exception) {}
         }
 
-        private void SaveSettings()
-        {
-            try
-            {
-                Engine.Settings.DeltaT = Convert.ToDouble(txt_deltat.Text);
-                Engine.Settings.TeilchenDistanz = Convert.ToDouble(txt_distanz.Text);
-                Engine.Settings.FederkonstanteKopplung = Convert.ToDouble(txt_dkopplung.Text);
-                Engine.Settings.FederkonstanteTeilchen = Convert.ToDouble(txt_dteilchen.Text);
-                Engine.Settings.Energieerhaltung = Convert.ToDouble(txt_energieerhaltung.Text);
-                Engine.Settings.DesiredFPS = Convert.ToInt32(txt_fps.Text);
-                Engine.Settings.Teilchenmasse = Convert.ToDouble(txt_masse.Text);
-            }
-            catch (Exception)
-            {}
-        }
-
-        private void txt_dkopplung_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            SaveSettings();
-        }
-
-        private void txt_distanz_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            SaveSettings();
-        }
-
-        private void txt_masse_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            SaveSettings();
-        }
-
-        private void txt_dteilchen_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            SaveSettings();
-        }
-
-        private void txt_deltat_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            SaveSettings();
-        }
-
-        private void txt_fps_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            SaveSettings();
-        }
-
-        private void txt_energieerhaltung_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            SaveSettings();
-        }
-
-        private void b_set_Click(object sender, EventArgs e)
-        {
-            SaveSettings();
-        }
-
-        private void b_reset_Click(object sender, EventArgs e)
-        {
-            Engine.Init(pb_image.Width/_resDiv, pb_image.Height/_resDiv);
-            Engine.Start();
-        }
-
-        private void b_pause_Click(object sender, EventArgs e)
-        {
-            if (Engine.SimulationRunning)
-            {
-                Engine.Stop();
-                b_pause.Text = "Resume";
-            }
-            else
-            {
-                Engine.Start();
-                b_pause.Text = "Pause";
-            }
-        }
-
-        private void b_step_Click(object sender, EventArgs e)
-        {
-            Engine.ManualStep();
-            b_pause.Text = "Resume";
-        }
-
         private void pb_image_Click(object sender, EventArgs e)
         {
             
@@ -201,26 +105,26 @@ namespace WaveSim
             int y = _mouseY;
 
             double value = 0;
-            if (cb_wert.SelectedIndex != -1)
-                value = Convert.ToDouble(cb_wert.Items[cb_wert.SelectedIndex]);
+            if (tsCbMouseValue.SelectedIndex != -1)
+                value = Convert.ToDouble(tsCbMouseValue.Items[tsCbMouseValue.SelectedIndex]);
 
-            if (cb_mausaction.SelectedIndex == 0)
+            if (tsCbMouseAction.SelectedIndex == 0)
             {
                 Engine.Poke(x, y, value, 0);
                 Engine.Poke(x+1, y, value, 0);
                 Engine.Poke(x, y+1, value, 0);
                 Engine.Poke(x+1, y+1, value, 0);
             }
-            else if (cb_mausaction.SelectedIndex == 1)
+            else if (tsCbMouseAction.SelectedIndex == 1)
                 Engine.SetWall(x, y);
-            else if (cb_mausaction.SelectedIndex == 2)
+            else if (tsCbMouseAction.SelectedIndex == 2)
             {
                 Engine.SetWall(x, y, false);
                 Engine.SetWall(x+1, y, false);
                 Engine.SetWall(x, y+1, false);
                 Engine.SetWall(x+1, y+1, false);
             }
-            else if (cb_mausaction.SelectedIndex == 3)
+            else if (tsCbMouseAction.SelectedIndex == 3)
             {
                 Engine.SetMass(x, y, value);
                 Engine.SetMass(x+1, y, value);
@@ -229,7 +133,7 @@ namespace WaveSim
                 Engine.SetMass(x, y + 2, value);
                 Engine.SetMass(x + 2, y + 2, value);
             }
-            else if (cb_mausaction.SelectedIndex == 4)
+            else if (tsCbMouseAction.SelectedIndex == 4)
             {
                 Engine.SetMass(x, y, 0);
                 Engine.SetMass(x+1, y, 0);
@@ -238,7 +142,7 @@ namespace WaveSim
                 Engine.SetMass(x, y + +2, 0);
                 Engine.SetMass(x + 2, y + 2, 0);
             }
-            else if (cb_mausaction.SelectedIndex == 5)
+            else if (tsCbMouseAction.SelectedIndex == 5)
             {
                 SinusWaveSource sws = new SinusWaveSource();
                 sws.X = x;
@@ -291,113 +195,12 @@ namespace WaveSim
             _mouseDown = false;
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cb_resDiv.SelectedIndex != -1)
-            {
-                _resDiv = cb_resDiv.SelectedIndex + 1;
-                Engine.Init(pb_image.Width / _resDiv, pb_image.Height / _resDiv);
-            }
-
-        }
-
-        private void b_resetElong_Click(object sender, EventArgs e)
-        {
-            Engine.ResetElongation();
-        }
-
-        private void b_resetMass_Click(object sender, EventArgs e)
-        {
-            Engine.ResetMass();
-        }
-
-        private void b_resetSources_Click(object sender, EventArgs e)
-        {
-            Engine.ResetSources();
-        }
-
-        private void b_resetWalls_Click(object sender, EventArgs e)
-        {
-            Engine.ResetWalls();
-        }
-
         private void pb_image_Resize(object sender, EventArgs e)
         {
             //Re-init
             Engine.Stop();
             //Restart is done by Form - resize end
             //Engine.Init(pb_image.Width / _resDiv, pb_image.Height / _resDiv);
-        }
-
-        private void p_colMax_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void p_colMax_Click(object sender, EventArgs e)
-        {
-            DialogResult res = colorDialog.ShowDialog();
-
-            if (res == DialogResult.OK)
-            {
-                p_colMax.BackColor = dcv.ColorMax = colorDialog.Color;
-                dcv.UpdateColorMapping(false);
-            }
-        }
-
-        private void p_colNull_Click(object sender, EventArgs e)
-        {
-            DialogResult res = colorDialog.ShowDialog();
-
-            if (res == DialogResult.OK)
-            {
-                p_colNull.BackColor = dcv.ColorNull = colorDialog.Color;
-                dcv.UpdateColorMapping(false);
-            }
-        }
-
-        private void p_colMin_Click(object sender, EventArgs e)
-        {
-            DialogResult res = colorDialog.ShowDialog();
-
-            if (res == DialogResult.OK)
-            {
-                p_colMin.BackColor = dcv.ColorMin = colorDialog.Color;
-                dcv.UpdateColorMapping(false);
-            }
-        }
-
-        private void p_colWall_Click(object sender, EventArgs e)
-        {
-            DialogResult res = colorDialog.ShowDialog();
-
-            if (res == DialogResult.OK)
-            {
-                p_colWall.BackColor = dcv.ColorWall = colorDialog.Color;
-                dcv.UpdateColorMapping(false);
-            }
-        }
-
-        private void p_colorMass_Click(object sender, EventArgs e)
-        {
-            DialogResult res = colorDialog.ShowDialog();
-
-            if (res == DialogResult.OK)
-            {
-                p_colorMass.BackColor = dcv.ColorMass = colorDialog.Color;
-                dcv.UpdateColorMapping(false);
-            }
-        }
-
-        private void b_scale_Click(object sender, EventArgs e)
-        {
-            dcv.UpdateColorMapping(true);
-
-            p_colorMass.BackColor = dcv.ColorMass;
-            p_colWall.BackColor = dcv.ColorWall;
-            p_colMin.BackColor = dcv.ColorMin;
-            p_colNull.BackColor = dcv.ColorNull;
-            p_colMax.BackColor = dcv.ColorMax;
         }
 
         private Size _oldsize;
@@ -416,30 +219,7 @@ namespace WaveSim
             Engine.Start();
         }
 
-        private void b_save_Click(object sender, EventArgs e)
-        {
-            Engine.Stop();
-            WaveSettings set = Engine.Settings;
-
-            DialogResult res = saveFileDialog.ShowDialog();
-
-            if (res != System.Windows.Forms.DialogResult.Cancel)
-            {
-                bool result = set.SaveToFile(saveFileDialog.FileName);
-                if (result)
-                {
-                    MessageBox.Show("File successfully saved!", "Save");
-                }
-                else
-                {
-                    MessageBox.Show("Error whilst saving the file!", "Save");
-                }
-            }
-
-            Engine.Start();
-        }
-
-        private void b_load_Click(object sender, EventArgs e)
+        private void loadToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Engine.Stop();
             WaveSettings set = Engine.Settings;
@@ -465,6 +245,113 @@ namespace WaveSim
                 MessageBox.Show("File loaded successfully!", "Load");
                 Engine.Start();
             }
+        }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Engine.Stop();
+            WaveSettings set = Engine.Settings;
+
+            DialogResult res = saveFileDialog.ShowDialog();
+
+            if (res != System.Windows.Forms.DialogResult.Cancel)
+            {
+                bool result = set.SaveToFile(saveFileDialog.FileName);
+                if (result)
+                {
+                    MessageBox.Show("File successfully saved!", "Save");
+                }
+                else
+                {
+                    MessageBox.Show("Error whilst saving the file!", "Save");
+                }
+            }
+
+            Engine.Start();
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Engine.Stop();
+            this.Close();
+            Application.Exit();
+        }
+
+        private void resetAllToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Engine.Init(pb_image.Width / _resDiv, pb_image.Height / _resDiv);
+            Engine.Start();
+        }
+
+        private void resetElongationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Engine.ResetElongation();
+        }
+
+        private void resetMassToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Engine.ResetMass();
+        }
+
+        private void resetSourcesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Engine.ResetSources();
+        }
+
+        private void resetWallsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Engine.ResetWalls();
+        }
+
+        private void pauseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (Engine.SimulationRunning)
+            {
+                pauseToolStripMenuItem.Text = "Resume";
+                Engine.Stop();
+            }
+            else
+            {
+                pauseToolStripMenuItem.Text = "Pause";
+                Engine.Start();
+            }
+        }
+
+        private void stepToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Engine.Stop();
+            pauseToolStripMenuItem.Text = "Resume";
+            Engine.ManualStep();
+        }
+
+        private void toolStripComboBox1_Click(object sender, EventArgs e)
+        {
+            if (tsCbSimResolution.SelectedIndex != -1)
+            {
+                _resDiv = tsCbSimResolution.SelectedIndex + 1;
+                Engine.Init(pb_image.Width / _resDiv, pb_image.Height / _resDiv);
+                Engine.Start();
+            }
+        }
+
+        private void editSimulationParametersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            WaveSettings set = Engine.Settings;
+
+            SimSettingsForm ssf = new SimSettingsForm();
+            ssf.Settings = set;
+            ssf.ShowDialog();
+
+            if (ssf.Settings != null)
+            {
+                Engine.Settings = ssf.Settings;
+            }
+        }
+
+        private void editColorsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SimVisForm svf = new SimVisForm(dcv);
+            svf.Show();
         }
     }
 }

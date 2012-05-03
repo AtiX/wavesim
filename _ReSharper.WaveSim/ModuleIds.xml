@@ -1,0 +1,4 @@
+<Modules>
+  <Module PersistentId="CA92D4D9-78C8-42EA-BB2A-FA76954A6C75" ModuleId="WaveSimLib" />
+  <Module PersistentId="C859B585-C313-4B89-85E9-BB55C8616C8F" ModuleId="WaveSim" />
+</Modules>
