@@ -67,7 +67,7 @@ namespace WaveSimLib.Code.Wave
                 bf.Serialize(fstr, this);
                 fstr.Close();
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 if (fstr != null)
                 {
@@ -107,7 +107,7 @@ namespace WaveSimLib.Code.Wave
                 this.Width = set.Width;
                 this.WaveSources = set.WaveSources;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 if (fstr!= null)
                 {

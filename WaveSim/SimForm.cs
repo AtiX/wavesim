@@ -180,7 +180,7 @@ namespace WaveSim
                                    v.ToString("##0.000" + " Energy: " + w.ToString("##0.000") + " FPS: " +
                                               fps.ToString());
             }
-            catch (Exception e) {}
+            catch (Exception) {}
         }
 
         private void pb_image_MouseDown(object sender, MouseEventArgs e)

@@ -424,7 +424,7 @@ namespace WaveSimLib.Code.Wave
                     }
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {}
 
             if (re != null)

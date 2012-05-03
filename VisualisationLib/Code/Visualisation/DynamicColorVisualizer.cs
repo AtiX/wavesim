@@ -66,7 +66,7 @@ namespace WaveSimLib.Code.Visualisation
                         d.blue = c.B;
                         usb.SetPixel(ix, iy, d);
                     }
-                    catch (Exception e)
+                    catch (Exception)
                     {
                         return res;
                     }
@@ -115,7 +115,7 @@ namespace WaveSimLib.Code.Visualisation
                         //d.blue = c.B;
                         //usb.SetPixel(ix, iy, d);
                     }
-                    catch (Exception e)
+                    catch (Exception)
                     {
                         return res;
                     }
