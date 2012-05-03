@@ -57,7 +57,10 @@ namespace WaveSim
                 }
 
                 //Resize window
-                Size windowS = new Size(set.Width * _resDiv + 242, set.Height * _resDiv + 83);
+                int deltaWidth = this.Width - pb_image.Width;
+                int deltaHeight = this.Height - pb_image.Height;
+
+                Size windowS = new Size(set.Width * _resDiv + deltaWidth, set.Height * _resDiv + deltaHeight);
                 this.Size = windowS;
 
                 Engine.Settings = set;
@@ -237,8 +240,11 @@ namespace WaveSim
                     return;
                 }
 
-                //Resize window
-                Size windowS = new Size(set.Width * _resDiv + 242, set.Height * _resDiv + 83);
+                //Resize windows
+                int deltaWidth = this.Width - pb_image.Width;
+                int deltaHeight = this.Height - pb_image.Height;
+
+                Size windowS = new Size(set.Width * _resDiv + deltaWidth, set.Height * _resDiv + deltaHeight);
                 this.Size = windowS;
 
                 Engine.Settings = set;
